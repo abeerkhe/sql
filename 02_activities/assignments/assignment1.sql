@@ -38,7 +38,7 @@ filtered by vendor IDs between 8 and 10 (inclusive) using either:
 
 SELECT *, (quantity * cost_to_customer_per_qty) AS price 
 FROM customer_purchases 
-WHERE vendor_id BETWEEN 4 AND 10
+WHERE vendor_id BETWEEN 8 AND 10
 
 -- option 2
 
@@ -56,7 +56,7 @@ CASE product_qty_type
 	WHEN 'unit' 
 		THEN 'unit' 
 	ELSE 'bulk'
-END AS product_qty_type_condesed
+END AS product_qty_type_condensed
 FROM product
 
 
