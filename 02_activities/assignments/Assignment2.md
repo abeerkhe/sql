@@ -51,6 +51,12 @@ We want to create employee shifts, splitting up the day into morning and evening
 #### Prompt 3
 The store wants to keep customer addresses. Propose two architectures for the CUSTOMER_ADDRESS table, one that will retain changes, and another that will overwrite. Which is type 1, which is type 2? 
 
+The left-hand side table is Type 1 and the right-hand side table is Type 2. 
+
+Type 1 (LHS) contains only individual fields for address and no flag to differentiate multiple address_id values for a single customer_id. Any address updates should replace existing values.  
+
+Conversely, Type 2 (RHS) contains a current_flag field to identify the latest address_id from multilpe address_id values for a single customer_id. Additional helper fields (such as address_decomission_date) help retain a record of when address changes were made and when a specific address may have been used historically. 
+ 
 **HINT:** search type 1 vs type 2 slowly changing dimensions. 
 
 ```
