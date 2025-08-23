@@ -164,7 +164,7 @@ FROM (
 	SELECT market_date, SUM(cost_to_customer_per_qty*quantity) AS total_sales
 	FROM customer_purchases 
 	GROUP BY market_date 
-	ORDER BY total_sales DESC 
+	ORDER BY total_sales ASC 
 	LIMIT 1
 )
 
@@ -238,10 +238,9 @@ by its product_id.*/
 DELETE FROM product_units
 WHERE 
   product_id IN 
-    (SELECT product_id 
+    (SELECT MIN(snapshot_timestamp)
     FROM product_units 
-    WHERE product_name='Churros' 
-    ORDER BY snapshot_timestamp ASC LIMIT 1) 
+    WHERE product_name='Churros') 
 
 -- UPDATE
 /* 1.We want to add the current_quantity to the product_units table. 
